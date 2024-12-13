@@ -53,6 +53,7 @@ public class  ReadingFiles {
                 System.out.println("File Path: " + file);
                 //Starts at line 0 and moves line by line through the file
                 int line = 0;
+                int nonzerolengthLine = 0;
                 int spaces = 0;
                 int characters = 0;
                 int wordCount = 0;
@@ -64,6 +65,9 @@ public class  ReadingFiles {
                     rec = reader.readLine();
                     line++;
                     characters += rec.length();
+                    if(rec.isEmpty()){
+                        nonzerolengthLine++;
+                    }
                     for (int i = 0; i < rec.length(); i++) {
                         String current = rec.substring(i, i+1);
                         if (current.equalsIgnoreCase(" ")) {
@@ -77,7 +81,7 @@ public class  ReadingFiles {
 
                 reader.close(); // must close the file to seal it and clear buffer
                 System.out.println("\n\nData file read!");
-                wordCount = spaces + line;
+                wordCount = spaces + nonzerolengthLine;
                 System.out.println("File Summary");
                 System.out.println("Number of Lines: " + line);
                 System.out.println("Number of Spaces: " + spaces);
