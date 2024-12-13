@@ -24,7 +24,7 @@ public class  WritingFiles {
         //Path is automatically set for user
         //In this case, the file will be stored in the src folder and the name is already chosen
         //You may want to change the file name or give the user the ability to choose their own file name
-        Path file = Paths.get(workingDirectory.getPath() + "\\src\\data.txt");
+        Path file = Paths.get(workingDirectory.getPath() + "\\src\\nums.txt");
 
         //The try block will attempt to write a new txt file
         //If an error occurs in this block, the catch block will handle the IO Exception

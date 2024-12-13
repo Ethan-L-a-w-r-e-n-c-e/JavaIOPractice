@@ -4,11 +4,14 @@ import javax.swing.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.sql.SQLOutput;
+
 import static java.nio.file.StandardOpenOption.CREATE;
 
 public class  ReadingFiles {
     //need to add the "throws IOException" after typical main phrase
     public static void main(String[] args) throws IOException   {
+
 
         //Creates a JFileChooser object that will open the JFileChooser Wizard GUI
         //Allows user to search for files that they want read by the program
@@ -50,6 +53,9 @@ public class  ReadingFiles {
                 System.out.println("File Path: " + file);
                 //Starts at line 0 and moves line by line through the file
                 int line = 0;
+                int spaces = 0;
+                int characters = 0;
+                int wordCount = 0;
                 //Rec holds what the reader finds on the line
                 String rec = "";
 
@@ -57,11 +63,26 @@ public class  ReadingFiles {
                 while (reader.ready()) {
                     rec = reader.readLine();
                     line++;
+                    characters += rec.length();
+                    for (int i = 0; i < rec.length(); i++) {
+                        String current = rec.substring(i, i+1);
+                        if (current.equalsIgnoreCase(" ")) {
+                            spaces++;
+
+                        }
+                    }
                     //Prints the line # and the contents of the line
                     System.out.printf("\nLine%4d: %-60s ", line, rec);
                 }
+
                 reader.close(); // must close the file to seal it and clear buffer
-                System.out.println("\n\nData file read!"); //Success message
+                System.out.println("\n\nData file read!");
+                wordCount = spaces + line;
+                System.out.println("File Summary");
+                System.out.println("Number of Lines: " + line);
+                System.out.println("Number of Spaces: " + spaces);
+                System.out.println("Number of Words: " + wordCount);
+                System.out.println("Number of Character: " + characters);//Success message
 
                  /*
                     This is where the program stops displaying the read file to the user
